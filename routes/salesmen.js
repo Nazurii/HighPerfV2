@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var salesmanDAO = require('./../mongoose/salesmanDAO');
+var recordsDAO = require('./../mongoose/recordsDAO');
 
 //POST salesman
 router.post('/', function(req, res, next) {
@@ -30,7 +31,7 @@ router.get('/:id', function(req, res, next) {
 
 //UPDATE salesman
 router.put('/:id', function(req, res, next){
-    salesmanDAO.updateSalesman(req.params.id);
+    salesmanDAO.updateSalesman(req);
     res.writeHead(200, {'Content-Type':'application/json'});
     res.end();
 });
@@ -38,6 +39,7 @@ router.put('/:id', function(req, res, next){
 //DELETE salesman by id
 router.delete('/:id', function (req, res, next){
     salesmanDAO.deleteSalesman(req.params.id);
+    recordsDAO.deleteAll(req.params.id);
     res.writeHead(200, {'Content-Type':'applications/json'});
     res.end();
 });

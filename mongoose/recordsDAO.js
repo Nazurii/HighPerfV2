@@ -58,11 +58,20 @@ const deleteRecord = (req) => {
     });
 };
 
+//TODO this doesnt work
+const deleteAll = (id) => {
+    console.log("Delete All Records of Salesman by ID");
+    records.deleteMany({id:id}, function(err, doc){
+        logError(err);
+    });
+};
+
 exports.getRecordById = getRecordById;
 exports.postRecord = postRecord;
 exports.putRecord = putRecord;
 exports.deleteRecord = deleteRecord;
 exports.getRecordByGoalID = getRecordByGoalId;
+exports.deleteAll = deleteAll;
 
 
 
