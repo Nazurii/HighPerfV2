@@ -3,6 +3,7 @@ var router = express.Router();
 
 var salesmanDAO = require('./../mongoose/salesmanDAO');
 var recordsDAO = require('./../mongoose/recordsDAO');
+var ocrx = require('./../OpenCRX');
 
 //POST salesman
 router.post('/', function(req, res, next) {
