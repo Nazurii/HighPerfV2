@@ -55,10 +55,10 @@ function mapRating(number){
     }
 }
 
-var objekte = null;
-var products = null;
-var sales = null;
-var rep = null;
+let objekte = null;
+let products = null;
+let sales = null;
+let rep = null;
 
 
 const contacts = axios.get(`${baseUrl}/org.opencrx.kernel.account1/provider/CRX/segment/Standard/account`, config)
@@ -102,8 +102,8 @@ function getRep(url){
 
 const getAllProducts = () => {
     console.log("Get all products");
-    var liste = [];
-    for(i in products){
+    let liste = [];
+    for(let i in products){
         let p = new Product(products[i].name, products[i].description, products[i].productNumber);
         liste[i] = p;
     }
@@ -112,8 +112,8 @@ const getAllProducts = () => {
 
 const getAllSales = () => {
     console.log("Get all sales");
-    var liste = [];
-    for(i in sales){
+    let liste = [];
+    for(let i in sales){
         let s = new Sales(sales[i].name, sales[i].totalAmount, sales[i].totalTaxAmount, sales[i].totalAmountIncludingTax, sales[i].contractNumber);
         liste[i] = s;
         console.log(getRep(sales[i].salesRep['@href']));
@@ -121,10 +121,11 @@ const getAllSales = () => {
     }
     return liste;
 }
+
 const getAllCustomers = () => {
     console.log("Get all customers from OpenCRX");
-    var liste = []
-    for (o in objekte) {
+    let liste = []
+    for (let o in objekte) {
         if (objekte[o].hasOwnProperty("jobTitle")) {
             let p = new Person(objekte[o].fullName, objekte[o].department, objekte[o].jobTitle, objekte[o].annualIncomeCurrency)
             console.log(p)
@@ -135,8 +136,8 @@ const getAllCustomers = () => {
 }
 
 const getAllCompanies = () => {
-    var liste = []
-    for (o in objekte) {
+    let liste = []
+    for (let o in objekte) {
         if (objekte[o].hasOwnProperty("industry")) {
             let p = new Company(objekte[o].fullName, objekte[o].accountRating);
             console.log(p)
